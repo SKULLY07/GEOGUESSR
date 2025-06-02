@@ -1,3 +1,4 @@
+package main;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -17,9 +18,11 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 public class Frame extends JPanel implements ActionListener, MouseListener, KeyListener {
+	Location[] test = new Location[6];
+	
 
 	
-	}
+	
 
 	public void reset() {
 		
@@ -32,9 +35,10 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	}
 
 	public void paint(Graphics g) {
-		super.paintComponent(g);
 
-	}
+		super.paintComponent(g);
+		test[0].paint(g);
+  	}
 
 	public static void main(String[] arg) {
 		Frame f = new Frame();
@@ -80,45 +84,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	@Override
 	public void mousePressed(MouseEvent mouse) {
 // TODO Auto-generated method stub
-		Rectangle rMouse = new Rectangle(mouse.getX(), mouse.getY(), 25, 25);
-
-		Rectangle rMain = new Rectangle(oddBod.getX(), oddBod.getY(), oddBod.getWidth(), oddBod.getHeight());
-
-		System.out.println("orig oddBod getX::" + oddBod.getX());
-		System.out.println("orig oddBod getY::" + oddBod.getY());
-// OddBod will fall down when the mouse is clicked on it
-		if (rMouse.intersects(rMain)) {
-			System.out.println("oddBod getX::" + oddBod.getX());
-			System.out.println("oddBod getY::" + oddBod.getY());
-			oddBod.setVy(10);
-			oddBod.setVx(0);
-			score++;
-
-// Now that mouse clicked oddBod; duck will come now to pick up the oddBod
-			duck.setX(oddBod.getX());
-			try {
-				Thread.sleep(200);
-			} catch (InterruptedException e) {
-// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-			}
-
-// Now check duck X and oddBod X position;
-// matching then both oddBod and duck will go together towards right
-			System.out.println("duck getX::" + duck.getX());
-			int loopCounter = 0;
-			while (true) {
-				if (duck.getX() == oddBod.getX()) {
-					System.out.println("duck and oddBod met at X:: " + duck.getX());
-					duck.setVx(0);
-				}
-				loopCounter++;
-				if (loopCounter == 500) {
-					break;
-				}
-			}
+	
 
 		}
 
@@ -144,17 +110,9 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 
 	@Override
 	public void keyPressed(KeyEvent arg0) {
-// TODO Auto-generated method stub
-		System.out.println(arg0.getKeyCode());
 
-// spacebar continuye the round
-		if (arg0.getKeyCode() == 32) {
-// if(t.isRunning()) {
-			t.start();
-// }
-			reset();
 		}
-	}
+	
 
 	@Override
 	public void keyReleased(KeyEvent arg0) {

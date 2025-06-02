@@ -18,8 +18,8 @@ public class Location {
 	private AffineTransform tx;
 	private int vx, vy;							//for movement
 	private int x, y;							//position
-	private double xScale = 1.0, yScale = 1.0;	//scaling (sizing)
-	private int width = 50, height = 50;
+	private double xScale = 0.3, yScale = 0.27;	//scaling (sizing)
+	private int width = 1000, height = 1000;
 	
 	public Location(String fileName) {
 		img = getImage("/imgs/"+fileName); // load the image for Tree
@@ -27,16 +27,28 @@ public class Location {
 		tx = AffineTransform.getTranslateInstance(0, 0);
 			// initialize the location of the image
 					// use your variables
+		init(x,y);
 	}
 
 	
 	public Location() {
-		img = getImage("/imgs/duck.gif"); // load the image for Tree
+		img = getImage("/imgs/AFRICA.png"); // load the image for Tree
 
 		tx = AffineTransform.getTranslateInstance(0, 0);
-		
+		init(x,y);
+
+	}
+	public void paint(Graphics g) {
+		//these are the 2 lines of code needed draw an image on the screen
+		Graphics2D g2 = (Graphics2D) g;
+		g2.drawImage(img, tx, null);
+
 	}
 
+	private void init(double a, double b) {
+		tx.setToTranslation(a, b);
+		tx.scale(xScale, yScale);
+	}
 	public void setWidthHeight(int w, int h) {
 		this.width = w;
 		this.height = h;
@@ -64,6 +76,7 @@ public class Location {
 	
 	}
 	
+	
 	public void setXY(int x, int y) {
 		this.x = x;
 		this.y = y;
@@ -87,9 +100,7 @@ public class Location {
 		this.y = y;
 	}
 
-	public Location( String cont, String coun, String sub, double lat, double lon) {
-	
-	}
+
 	public double getLat(){
 		return latitude;
 	}
@@ -134,7 +145,7 @@ public class Location {
 	private Image getImage(String path) {
 		Image tempImage = null;
 		try {
-			URL imageURL = Background.class.getResource(path);
+			URL imageURL = Location.class.getResource(path);
 			tempImage = Toolkit.getDefaultToolkit().getImage(imageURL);
 		} catch (Exception e) {
 			e.printStackTrace();
