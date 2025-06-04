@@ -18,9 +18,10 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 public class Frame extends JPanel implements ActionListener, MouseListener, KeyListener {
-	Location[] test = new Location[6];
+	Location[] continents = new Location[6];
+	Location[] countries = new Location[6];
+	Location[] subdivisions = new Location[6];
 	
-
 	
 	
 
@@ -37,7 +38,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	public void paint(Graphics g) {
 
 		super.paintComponent(g);
-		test[0].paint(g);
+		continents[0].paint(g);
   	}
 
 	public static void main(String[] arg) {
@@ -58,6 +59,22 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		t.start();
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		f.setVisible(true);
+		
+		continents[0] = new Location("Africa.png", "Africa", "South Africa", "Western Cape");
+		continents[1] = new Location("Africa.png", "North America", "USA", "California");
+		continents[2] = new Location("Africa.png", "North America", "USA", "Washington");
+		continents[2] = new Location("Africa.png", "South America", "Brazil", "Rio de Janeiro");
+		continents[2] = new Location("Africa.png", "Asia", "India", "Uttar Pradesh");
+		continents[2] = new Location("Africa.png", "Asia", "India", "Uttar Pradesh");
+		continents[2] = new Location("Africa.png", "Asia", "India", "Maharashtra");
+		continents[4] = new Location("Africa.png", "Asia", "Jordan", "Ma'an");
+		continents[4] = new Location("Africa.png", "Europe", "Turkey", "Istanbul");
+		continents[4] = new Location("Africa.png", "Asia", "Taiwan", "Taipei city");
+		continents[4] = new Location("Africa.png", "Asia", "Japan", "Yamanashi");
+		continents[4] = new Location("Africa.png", "Asia", "Jordan", "Ma'an");
+
+
+		
 	}
 
 // now

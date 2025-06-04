@@ -21,9 +21,11 @@ public class Location {
 	private double xScale = 0.3, yScale = 0.27;	//scaling (sizing)
 	private int width = 1000, height = 1000;
 	
-	public Location(String fileName) {
-		img = getImage("/imgs/"+fileName); // load the image for Tree
-
+	public Location(String image, String cont, String count, String subd) {
+		img = getImage("/imgs/"+image); // load the image for Tree
+		continent = cont;
+		country = count;
+		subdivision = subd; 
 		tx = AffineTransform.getTranslateInstance(0, 0);
 			// initialize the location of the image
 					// use your variables
