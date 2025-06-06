@@ -18,7 +18,7 @@ public class Location {
 	private AffineTransform tx;
 	private int vx, vy;							//for movement
 	private int x, y;							//position
-	private double xScale = 0.3, yScale = 0.27;	//scaling (sizing)
+	private double xScale = 0.3, yScale = 0.4;	//scaling (sizing)
 	private int width = 1000, height = 1000;
 	
 	public Location(String image, String cont, String count, String subd) {
@@ -29,7 +29,7 @@ public class Location {
 		tx = AffineTransform.getTranslateInstance(0, 0);
 			// initialize the location of the image
 					// use your variables
-		init(x,y);
+		init(x-100,y-100);
 	}
 
 	
@@ -136,7 +136,7 @@ public class Location {
 		country = coun;
 	}
 	
-	public String getsubdivision(){
+	public String getSubdivision(){
 		return subdivision;
 	}
 	
