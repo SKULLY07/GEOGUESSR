@@ -27,6 +27,9 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 
 	ArrayList<Location> locations = new ArrayList<Location>();
 	int locationNum = 0;
+	boolean worldMap;
+	boolean continentMap;
+	boolean countryMap;
 
 	public void reset() {
 
@@ -41,6 +44,10 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		super.paintComponent(g);
 		if(locations.size()>1){
 			locations.get(locationNum).paint(g);
+		}
+		
+		if(worldMap) {
+			g.fillRect(0, 0, 1000, 1000);
 		}
 	}
 
@@ -94,9 +101,10 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		t.start();
 		Scanner input = new Scanner(System.in);
 	    
-	    System.out.println("Enter your continent guess: ");
-        String continent = input.nextLine();
+	  
         for(int i =0; i<5; i++) {
+        	  System.out.println("Enter your continent guess: ");
+              String continent = input.nextLine();
         	 if(continent.equals(locations.get(locationNum).getContinent())) {
  	        	System.out.println("Nice! What country?");
  	        	String country = input.nextLine();
@@ -107,17 +115,27 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
  	 	        		System.out.println("Wow! You got the exact state! 5000 points");
  	 	        		locationNum++;
  	 	        	}
+ 	 	        	else {
+ 	 	 	        	System.out.println("Incorrect, try again");
 
+ 	 	        	}
+
+
+ 	        	}
+ 	        	else {
+ 	 	        	System.out.println("Incorrect, try again");
 
  	        	}
  	        	
 
  	        }
  	        else {
- 	        	System.out.println("Aww, try again by hitting space");
+ 	        	System.out.println("Incorrect, try again");
  	        	locationNum++;
  	        }
         }
+        locationNum--;
+     
        
         
 	       
@@ -172,12 +190,39 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 
 	@Override
 	public void keyPressed(KeyEvent arg0) {
+		
+		System.out.println(arg0.getKeyCode());
+		
+		int code = arg0.getExtendedKeyCode();
+		
+		if(code == 87) {
+			worldMap = true;
+		}
+		else if(code == 67) {
+			continentMap = true;
+		}
+		else if( code == 83) {
+			countryMap = true;
+		}
 
 	}
 
 	@Override
 	public void keyReleased(KeyEvent arg0) {
 // TODO Auto-generated method stub
+		System.out.println(arg0.getKeyCode());
+		
+		int code = arg0.getExtendedKeyCode();
+		
+		if(code == 87) {
+			worldMap = false;
+		}
+		else if(code == 67) {
+			continentMap = false;
+		}
+		else if( code == 83) {
+			countryMap = false;
+		}
 
 	}
 
